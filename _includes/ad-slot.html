@@ -1,0 +1,15 @@
+{% assign ad_id = include.id | default: '01' %}
+{% assign ad_code = site.ad_units[ad_id] %}
+{% assign show_ad = false %}
+{% if site.ads_enabled and site.adsense_client != '' and ad_code != '' %}{% assign show_ad = true %}{% endif %}
+{% if site.show_ad_placeholders or show_ad %}
+<div class="ad-space ad-space--{{ include.size | default: 'wide' }}" aria-label="Advertisement placement {{ ad_id }}">
+  <span class="ad-label">ADVERTISEMENT</span>
+  {% if site.ads_enabled and site.adsense_client != '' and ad_code != '' %}
+    <ins class="adsbygoogle" style="display:block" data-ad-client="{{ site.adsense_client | escape }}" data-ad-slot="{{ ad_code | escape }}" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  {% else %}
+    <div class="ad-placeholder"><strong>Ad space {{ ad_id }}</strong><span>{{ include.name | default: 'Reserved for advertising' }}</span></div>
+  {% endif %}
+</div>
+{% endif %}

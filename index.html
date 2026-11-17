@@ -1,0 +1,63 @@
+---
+layout: default
+title: Home
+---
+<main id="main-content">
+  <section class="hero container">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="eyebrow-line"></span> AN ONLINE READING JOURNAL</div>
+      <h1>Stories that stay <em>with you.</em></h1>
+      <p>Clear ideas, new perspectives, and meaningful reads for your everyday curiosity.</p>
+      <a class="primary-link" href="#latest">Explore the articles <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="art-orbit art-orbit-one"></div><div class="art-orbit art-orbit-two"></div>
+      <div class="art-card"><span class="art-overline">THE READING LIST</span><div class="art-rule"></div><div class="art-headline">A little more<br><em>perspective.</em></div><div class="art-rule light"></div><span class="art-number">VOL. 01 / ALWAYS OPEN</span></div>
+      <span class="art-star">✳</span>
+    </div>
+  </section>
+
+  <div class="container ad-block">{% include ad-slot.html id="01" size="wide" name="Header leaderboard" %}</div>
+
+  {% assign featured = site.posts.first %}
+  {% if featured %}
+  <section class="container featured-section" aria-labelledby="featured-title">
+    <div class="section-topline"><span class="kicker">EDITOR'S PICK</span><span class="rule"></span><span class="subtle">Worth your attention</span></div>
+    <a class="featured-story" href="{{ featured.url | relative_url }}">
+      <div class="featured-art"><span class="featured-symbol">✺</span><span class="art-small">A FRESH PERSPECTIVE</span></div>
+      <div class="featured-details"><span class="category-pill">{{ featured.category | default: 'Article' }}</span><h2 id="featured-title">{{ featured.title }}</h2><p>{{ featured.description }}</p><span class="text-arrow">Read the story <span aria-hidden="true">↗</span></span></div>
+    </a>
+  </section>
+  {% endif %}
+
+  <div class="container ad-block">{% include ad-slot.html id="02" size="wide" name="After featured story" %}</div>
+
+  <section class="container reading-layout" id="latest" aria-labelledby="latest-heading">
+    <div class="feed">
+      <div class="feed-heading"><div><span class="kicker">THE LATEST</span><h2 id="latest-heading">Good things to read<span class="accent">.</span></h2></div><div class="search-wrapper"><label class="sr-only" for="article-search">Search articles</label><input id="article-search" type="search" placeholder="Search stories..." autocomplete="off"></div></div>
+      <div class="article-list">
+        {% for post in site.posts %}
+        <a class="story-card" href="{{ post.url | relative_url }}" data-searchable="{{ post.title | append: ' ' | append: post.category | append: ' ' | append: post.description | downcase | escape }}">
+          <div class="story-card-graphic graphic-{{ forloop.index | modulo: 4 }}" aria-hidden="true"><span>{% cycle '✳', '◈', '✦', '❋' %}</span></div>
+          <div class="story-card-copy"><div class="story-meta"><span>{{ post.category | default: 'Article' }}</span><span class="meta-divider">·</span><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%b %d, %Y' }}</time></div><h3>{{ post.title }}</h3><p>{{ post.description }}</p><span class="story-link">Keep reading <span aria-hidden="true">↗</span></span></div>
+        </a>
+        {% if forloop.index == 2 %}
+        {% include ad-slot.html id="03" size="wide" name="In-feed after article 2" %}
+        {% endif %}
+        {% if forloop.index == 4 %}
+        {% include ad-slot.html id="04" size="wide" name="In-feed after article 4" %}
+        {% endif %}
+        {% endfor %}
+      </div>
+      <p class="empty-results" id="no-results" hidden>No matching articles. Try another search.</p>
+      {% include ad-slot.html id="05" size="wide" name="After the article list" %}
+    </div>
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="sidebar-editor"><span class="kicker">A NOTE FROM US</span><h3>Make space for <em>a good read.</em></h3><p>A quiet corner of the internet for practical ideas, fresh viewpoints, and thoughtful writing.</p><div class="editor-mark">✳</div></div>
+      {% include ad-slot.html id="06" size="box" name="Sidebar upper" %}
+      <div class="sidebar-topics"><span class="kicker">EXPLORE TOPICS</span><div class="topic-tags"><span>Learning</span><span>Everyday</span><span>Digital</span><span>Ideas</span><span>Culture</span></div></div>
+      {% include ad-slot.html id="07" size="box" name="Sidebar lower" %}
+    </aside>
+  </section>
+  <div class="container ad-block bottom-ad">{% include ad-slot.html id="08" size="wide" name="Before footer" %}</div>
+</main>

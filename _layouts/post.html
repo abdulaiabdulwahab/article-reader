@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<main id="main-content" class="post-main">
+  <div class="container post-top"><a class="back-link" href="{{ '/' | relative_url }}#latest"><span aria-hidden="true">←</span> Back to all articles</a></div>
+  <div class="container post-intro"><div class="story-meta"><span>{{ page.category | default: 'Article' }}</span><span class="meta-divider">·</span><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%B %d, %Y' }}</time></div><h1>{{ page.title }}</h1><p class="post-description">{{ page.description }}</p><div class="byline"><span class="author-avatar">I.</span><span>By {{ page.author | default: 'Ink & Insight Editorial' }}</span><span class="meta-divider">·</span><span>{{ page.reading_time | default: '4 min read' }}</span></div></div>
+  <div class="container post-layout">
+    <article class="article-body">{{ content }}<div class="end-note"><span>✳</span><p>Thank you for reading. Explore more thoughtful articles on our home page.</p><a href="{{ '/' | relative_url }}#latest">Browse more articles →</a></div></article>
+    <aside class="post-sidebar" aria-label="Advertisement and reading note"><div class="sidebar-editor"><span class="kicker">BETTER READING</span><h3>Ideas deserve <em>your time.</em></h3><p>Find something useful, interesting, or simply enjoyable in every visit.</p></div>{% include ad-slot.html id="06" size="box" name="Article sidebar" %}</aside>
+  </div>
+  <div class="container ad-block bottom-ad">{% include ad-slot.html id="08" size="wide" name="After article" %}</div>
+</main>

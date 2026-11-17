@@ -1,0 +1,26 @@
+# Website settings. Keep the repository name "article-reader" unless you update baseurl.
+title: "Ink & Insight"
+description: "Fresh perspectives, practical ideas, and stories worth reading."
+baseurl: "/article-reader"
+url: "https://YOUR-GITHUB-USERNAME.github.io"
+permalink: /articles/:title/
+markdown: kramdown
+
+# AD SETUP: leave false until the site is accepted by your ad provider.
+# Adding your AdSense client ID can enable ownership verification without serving ads.
+ads_enabled: false
+show_ad_placeholders: true  # set false before AdSense review to hide empty spaces
+adsense_client: ""
+ad_units:
+  "01": ""
+  "02": ""
+  "03": ""
+  "04": ""
+  "05": ""
+  "06": ""
+  "07": ""
+  "08": ""
+
+exclude:
+  - README.md
+  - LICENSE

@@ -1,8 +1,8 @@
 # Website settings. Keep the repository name "article-reader" unless you update baseurl.
 title: "Ink & Insight"
 description: "Fresh perspectives, practical ideas, and stories worth reading."
-baseurl: "/article-reader"
-url: "https://YOUR-GITHUB-USERNAME.github.io"
+baseurl: ""
+url: "https://inkinsight.site"
 permalink: /articles/:title/
 markdown: kramdown
 

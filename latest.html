@@ -1,0 +1,24 @@
+---
+layout: page
+title: Latest Article
+description: Read the newest published article from Ink & Insight.
+permalink: /latest.html
+---
+{% assign newest = site.posts.first %}
+<span class="kicker">FRESH FROM THE JOURNAL</span>
+<h1>Latest article<span class="accent">.</span></h1>
+<p>Start with the newest story published on Ink & Insight.</p>
+{% if newest %}
+<article aria-labelledby="newest-article-title">
+  <div class="story-meta">
+    <span>{{ newest.category | default: 'Article' | escape }}</span>
+    <span class="meta-divider">·</span>
+    <time datetime="{{ newest.date | date: '%Y-%m-%d' }}">{{ newest.date | date: '%B %d, %Y' }}</time>
+  </div>
+  <h2 id="newest-article-title"><a href="{{ newest.url | relative_url }}">{{ newest.title | escape }}</a></h2>
+  <p>{{ newest.description | escape }}</p>
+  <p><a href="{{ newest.url | relative_url }}">Read the latest article →</a></p>
+</article>
+{% else %}
+<p>No articles have been published yet. Check back soon.</p>
+{% endif %}

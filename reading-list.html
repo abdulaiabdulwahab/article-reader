@@ -1,0 +1,27 @@
+---
+layout: page
+title: Reading List
+description: Catch up with the latest published articles from Ink & Insight.
+permalink: /reading-list.html
+---
+{% assign newest = site.posts.first %}
+<span class="kicker">YOUR NEXT READ</span>
+<h1>Reading list<span class="accent">.</span></h1>
+<p>Discover recent stories, starting with our latest publication.</p>
+{% if newest %}
+<section aria-labelledby="latest-read-heading">
+  <h2 id="latest-read-heading">Newest article</h2>
+  <p><a href="{{ newest.url | relative_url }}">{{ newest.title | escape }} →</a></p>
+  <p>{{ newest.description | escape }}</p>
+</section>
+<section aria-labelledby="more-reads-heading">
+  <h2 id="more-reads-heading">More recent articles</h2>
+  <ul>
+  {% for post in site.posts offset:1 limit:4 %}
+    <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a> <small>({{ post.date | date: '%b %d, %Y' }})</small></li>
+  {% endfor %}
+  </ul>
+</section>
+{% else %}
+<p>No articles have been published yet. Check back soon.</p>
+{% endif %}
